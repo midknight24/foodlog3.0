@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/queries.css">
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<script type="text/javascript">
+		var email = sessionStorage.getItem('email');
+    	var password = sessionStorage.getItem('password');
+    	if(!email||!password)
+        	location.href = '/login.html';
+	</script>
+	<title>Foodlog | Record your diet!</title>
+</head>
+<body>
+	<!--need this div to keep container div behaves normally-->
+	<div class="whatever1"></div>
+	<div class="container hidden">
+		<header class="search">
+			<h1 class="logo">Foodlog</h1>
+			<input type="text" class="datepicker" id="date">
+			<button class="btn changeDate_btn" type="submit">
+					<ion-icon name="search" class="icon-search"></ion-icon>
+			</button>
+			<button class="btn foodUpload_btn" type="submit">
+					<ion-icon name="add" class="icon-search"></ion-icon>
+			</button>
+			<div class="logout"><ion-icon name="close"></ion-icon></div>
+			<!----<img src="img/me.jpg" alt="avatar" class="avatar">--->
+		</header>
+		<div class="log">
+		</div>
+		<div class="profile">
+			<div class="water_wrapper">
+				<div class="water_tracker">
+					<div class="water_row">
+						<ion-icon name="water" class="water"></ion-icon>
+						<ion-icon name="water" class="water"></ion-icon>
+						<ion-icon name="water" class="water"></ion-icon>
+						<ion-icon name="water" class="water"></ion-icon>
+					</div>
+					<div class="water_row">
+						<ion-icon name="water" class="water"></ion-icon>
+						<ion-icon name="water" class="water"></ion-icon>
+						<ion-icon name="water" class="water"></ion-icon>
+						<ion-icon name="water" class="water"></ion-icon>
+					</div>
+				</div>
+				<div class="water_logo">
+					<h4>Drink 8 cups of water/Day!</h4>
+					<button class="btn addWater_btn" type="submit">Record Drink</button>
+					<button class="btn removeWater_btn" type="submit">-</button>
+				</div>
+			</div>
+		</div>
+		<button class="btn mobile_water_btn"><ion-icon name="water" class="mobile_water"></ion-icon></button>
+	</div>
+	<!-- Firebase App is always required and must be first -->
+	<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-storage.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyCYq22-2_DtDQK4FjmTz1-8PYd-ea2SYv4",
+			authDomain: "foodlog-82773.firebaseapp.com",
+			databaseURL: "https://foodlog-82773.firebaseio.com",
+			projectId: "foodlog-82773",
+			storageBucket: "foodlog-82773.appspot.com",
+			messagingSenderId: "226244290539"
+		};
+		firebase.initializeApp(config);
+	</script>
+	<script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
+</body>
+</html>

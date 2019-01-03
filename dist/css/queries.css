@@ -1,0 +1,52 @@
+/*Small phones: 0 to 480px*/
+@media only screen and (max-width: 1120px){
+
+    .scrollbar{
+        margin-bottom: 40px;
+        overflow-x:scroll;
+    }
+
+    .scrollbar:hover{
+        margin-bottom: 40px;
+        overflow-x: scroll;
+    }
+
+
+    ::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    /*---For login pagee---*/
+    .login_card{
+        width: 100%;
+        margin-left: 0;
+    }
+
+    /*---For main pagee---*/
+
+    .container{
+        width: 100% !important;
+        grid-template-rows: 14rem minmax(100rem, auto);
+    }
+
+    .logo{
+        display: block;
+    }
+
+    .datepicker{
+        margin-left: 5px !important;
+        margin-right: 10px !important;
+    }
+
+    .logout{
+        margin-top: 28px;
+    }
+
+    .food_container{
+        /*---width and padding-bot wo must be equal
+        for img to be squares--*/
+        width: 40%;
+        padding-bottom: 40%;
+    }
+
+}

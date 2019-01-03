@@ -1,0 +1,395 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 1600px;
+    max-height: 1600px;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    color: #655A56; 
+    background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+
+.whatever1{
+    height: 1px !important;
+    width: 100% !important;
+}
+
+/*GENERAL COLOR
+#ff8a65 
+*LIGHTEN
+#ffccbc
+*/
+
+
+
+/*overlays*/
+
+.dark_overlay{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+    background-color: rgb(0,0,0,0.6);
+}
+
+/*food_detail_card*/
+.food_card{
+    z-index: 11;
+    position: fixed;
+    height: 400px;
+    width: 300px;
+    margin-left: -150px;
+    top: 15%;
+    left: 50%;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.detail {
+    background-color: #fff;
+    border-radius: 0 0 6px 6px;
+}
+
+.detail h2,
+.detail h4{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.detail_img{
+    border-radius:6px 6px 0px 0px;
+    width: 100%;
+    height: 70%;
+    overflow: hidden;
+}
+
+.detail_img .real_img{
+    max-width: 100%;
+    object-position: 0px -50px;
+    width:100%;
+}
+
+.detail_img .upload_img{
+    max-width: 80%;
+    display: block;
+    margin: 10% auto 10% auto;
+    cursor: pointer; 
+}
+
+.detail_img input{
+    display: none;
+}
+
+.name_input{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.type_input{
+    display: inline-block;
+    padding-left: 0px !important;
+    margin-left: 10% !important;
+}
+
+.submit_btn{
+    width:30% !important;
+    display: inline-block;
+    margin-top: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.icon-submit{
+    font-size: 180%;
+    margin-top: 10%;
+}
+
+/*general*/
+.container {
+    width: 60% !important;
+    max-height: 85% !important;
+    background-color: #fff;
+    margin-top: 5% !important;
+    display: grid;
+    border-radius: 6px;
+    box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
+    grid-template-areas: "search search" "log profile";
+    grid-template-rows: 10rem minmax(80rem, auto);
+    grid-template-columns: 2fr 1fr;
+    overflow: hidden;
+}
+
+/*HEADER*/
+.search {
+    grid-area: search;
+    background-color: #F9F5F3;
+}
+
+.datepicker {
+    background-color: #fff;
+    width: 25% !important;
+}
+
+input:focus {
+    border-bottom: 1px solid #f39272 !important;
+    box-shadow: 0 1px 0 0 #fa865f !important;
+}
+
+.btn{
+    background-color: #ffab91 !important;
+    margin-left: 0.5vw;
+}   
+
+.btn:hover{
+    background-color: #ffccbc !important;
+}
+
+.icon-search {
+    font-size: 140%;
+    margin-top: 40%;
+}
+
+.avatar {
+    float: right;
+    position: relative;
+    top: 50%;
+    height: 60%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    margin-right: 2vw;
+}
+
+.logout {
+    margin: 3px 3px 0 0;
+    cursor: pointer;
+    top: 0;
+    float: right;
+    z-index: 11;
+}
+
+/*LOG*/
+
+.log {
+    grid-area: log;
+}
+
+.profile {
+    margin-top: 2px;
+    grid-area: profile;
+    background-color: #F9F5F3;
+    overflow: hidden;
+    
+}
+
+.sidebar {
+    overflow: hidden;
+    position: absolute;
+    transition: 0.5s;
+    z-index: 10;
+    top:220px;
+    right: 0;
+    height: 100%;
+    width: 0;
+}
+
+.logo {
+    width: 33%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.meal_container{
+    white-space: nowrap;
+    overflow-x: hidden;
+    margin-bottom: 40px;
+}
+
+
+
+/*Scroll bar*/
+
+.scrollbar {
+    color: rgba(245, 158, 129, 0);
+    transition: color .3s ease;
+}
+
+.scrollbar:hover {
+    color: rgba(245, 158, 129, 0.8);
+    margin-bottom: 30px;
+    overflow-x: scroll;
+}
+
+.scrollbar::-webkit-scrollbar {
+    height: 10px;
+    background: #F9F5F3;
+}
+
+.scrollbar::-webkit-scrollbar-thumb{
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 10px;
+}
+
+
+.time {
+    display: block;
+    margin: 10px 10px 10px 10px;
+}
+
+.time h3{
+    color: rgb(143, 127, 121);
+    font-weight: 300;
+    margin-top:0px;
+    margin-bottom: 0px; 
+}
+
+.food_container {
+    display: inline-block;
+    width: 23%;
+    height: 0;
+    margin: 7px -7px 0px 10px;
+    position: relative;
+    padding-bottom: 23%;
+    overflow: hidden;
+}
+
+.food_container img{
+    cursor: pointer;
+    object-position: 0px -20px;
+    width:100%;
+}
+
+/*profile*/
+
+.water_tracker{
+    padding-top: 30px;
+    padding-bottom: -10px;
+    text-align: center;
+}
+
+.water_tracker button{
+    background-color: transparent;
+    border-width: 0px;
+}
+
+.water_logo{
+    text-align: center;
+}
+
+.water {
+    color: #655A56;
+    font-size: 30px;
+    transition: color 0.2s;
+}
+
+.taken {
+    color:rgb(170, 234, 255);
+}
+
+
+/*
+/////////////////
+
+Login page
+
+/////////////////
+*/
+
+.login_card{
+    overflow: hidden;
+    top: 20vh;
+    position: fixed;
+    margin-left: 35%;
+    width: 30%;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
+}
+
+.login_card .btn{
+    margin-bottom: 5px;
+}
+
+.user_input{
+    padding-left: 10px !important;
+}
+
+/*EFFECT*/
+
+.hiddenSidebar{
+    /*grid-template-columns: 50fr 1fr !important;*/
+    grid-template-areas: "search" "log";
+    grid-template-columns: 100%;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s linear;
+  }
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s linear;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid rgb(170, 234, 255); /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+.log_loader{
+    margin-top:50px;
+    margin-left: 35%;
+}
+
+.upload_loader{
+    margin-top: 100px;
+    margin-left: 30%;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*MOBILE SPECIFIC ELEMENT*/
+.mobile_water_btn{
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50% !important;
+    z-index: 11;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
+.mobile_water{
+    position: absolute;
+    font-size: 25px;
+    top: 25%;
+    left: 25%;
+}
+
+.mobile_return{
+    position: absolute;
+    font-size: 25px;
+    top: 25%;
+    left: 25%;
+}

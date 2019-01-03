@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/queries.css">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <title>Foodlog | Record your diet!</title>
+</head>
+<body>
+        <div class="login_card">
+            <h1 class="logo">Foodlog</h1>
+            <input type="email" placeholder=" Email" id="email" required class="user_input">
+            <input type="password" placeholder=" Password(6-20 characters)" id="password" pattern=".{8,20}"
+            oninvalid="this.setCustomValidity('6-20 characters')" required class="user_input">
+            <button type="submit" class="btn">Log in</button>
+            <button type="submit" class="btn">Sign up</button>
+        </div>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+    <script>
+            // Initialize Firebase
+            var config = {
+              apiKey: "AIzaSyCYq22-2_DtDQK4FjmTz1-8PYd-ea2SYv4",
+              authDomain: "foodlog-82773.firebaseapp.com",
+              databaseURL: "https://foodlog-82773.firebaseio.com",
+              projectId: "foodlog-82773",
+              storageBucket: "foodlog-82773.appspot.com",
+              messagingSenderId: "226244290539"
+            };
+            firebase.initializeApp(config);
+          </script>
+    <script src="js/login.js"></script>
+</body>
+</html>
