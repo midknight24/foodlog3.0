@@ -166,7 +166,7 @@ async function load(date){
 
 
 //change date obj when the datepicker value change
-elements.date.addEventListener('input',()=>{
+elements.date.addEventListener('change',()=>{
     console.log("date changed");
     var newDate = elements.date.value;
     var dateObj = parseDateObj(newDate);
