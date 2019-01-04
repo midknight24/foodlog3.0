@@ -1,7 +1,9 @@
 import {elements,fadeIn,fadeOut} from './base';
 import * as foodDao from '../foodDao';
 
-export const renderUpload = () => {
+//since uploadForm pops up only after date
+//is selected, we can pass in date
+export const renderUpload = (dateObj) => {
     var markups = `
     <div class="dark_overlay"></div>
     <div class="food_card">
@@ -34,7 +36,7 @@ export const renderUpload = () => {
     </div>`;
     elements.mainContainer.insertAdjacentHTML('afterbegin',markups);
     guessMeal();
-    setUpImageUpload();
+    setUpImageUpload(dateObj);
 }
 
 var clearUpload = ()=>{
@@ -63,7 +65,7 @@ var guessMeal = ()=>{
     document.querySelector('#food_type_select').selectedIndex = index;
 }
 
-var setUpImageUpload = ()=> {
+var setUpImageUpload = (dateObj)=> {
     var file;
     document.querySelector('.file_portal').addEventListener('change', e=>{
         file = event.target.files[0];
@@ -74,11 +76,8 @@ var setUpImageUpload = ()=> {
     });
     document.querySelector('.submit_btn').addEventListener('click', ()=>{
         if(file){
-            var d = new Date();
-            var date = "";
-            console.log(d);
-            console.log(d.getMonth());
-            date = date.concat(d.getFullYear(),"/",d.getMonth()+1,"/",d.getDate());
+            var date="";
+            date = date.concat(dateObj.year,"/",dateObj.month+1,"/",dateObj.month);
             var foodFile = {
                 file,
                 date,

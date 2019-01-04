@@ -7,11 +7,12 @@ import * as material from './materialize.min';
 import * as foodDao from './foodDao';
 
 var state = {
-    date: getCurDate(),
+    //date obj of the current log
+    date: getCurDateObj(),
     dayLog: null,
     sidebar: false
 }
-
+ 
 function getCurDateObj(){
     var today = new Date();
     var obj = {
@@ -20,6 +21,17 @@ function getCurDateObj(){
         day: today.getDate()
     }
     return obj;
+}
+
+//pasre '2047/01/01' into 2047 1 1
+function parseDateObj(date){
+    var arr = date.split("/");
+    var dateObj = {
+        year: arr[2],
+        month: (arr[0][0]!='0')?arr[0]:arr[0][1],
+        day: (arr[1][0]!='0')?arr[1]:arr[1][1]
+    }
+    return dateObj
 }
 
 function getCurDate(){
@@ -127,16 +139,10 @@ async function load(date){
         activateSideBar(true);
     }
     //check current date
-    var today = new Date();
-    var date_default = {
-        year: today.getFullYear(),
-        month: today.getMonth()+1,
-        day: today.getDate()
-    };
     datePickerInit();
     if(date==undefined){
-        date = date_default;
-        elements.date.value = getCurDate();
+        date = getCurDate();
+        elements.date.value = date;
     }
     logView.renderLoader();
     //fetch dayLog from database
@@ -158,6 +164,16 @@ async function load(date){
     profileView.renderWater(state.dayLog.Water);    
 }
 
+
+//change date obj when the datepicker value change
+elements.date.addEventListener('input',()=>{
+    console.log("date changed");
+    var newDate = elements.date.value;
+    var dateObj = parseDateObj(newDate);
+    console.log(dateObj);
+    state.date = dateObj;
+});
+
 //Init on page loaded
 document.addEventListener('DOMContentLoaded',async ()=>{
     checkLoginInfo();
@@ -172,7 +188,7 @@ elements.logout.addEventListener('click',()=>{
 
 //set up food upload btn
 elements.uploadForm.addEventListener('click',()=>{
-    headerView.renderUpload();
+    headerView.renderUpload(state.date);
     foodSelectorInit();
     addOverlay();
     //set up EL for submit
@@ -184,14 +200,7 @@ elements.dateForm.addEventListener('click',()=>{
     logView.clearMeals();
     profileView.resetWater();
     checkWidth();
-    var date = elements.date.value;
-    var arr = date.split("/");
-    var dateObj = {
-        year: arr[2],
-        month: (arr[0][0]!='0')?arr[0]:arr[0][1],
-        day: (arr[1][0]!='0')?arr[1]:arr[1][1]
-    }
-    load(dateObj);
+    load(state.date);
 });
 
 //set up add Water btn
@@ -204,15 +213,7 @@ elements.addWater.addEventListener('click',async ()=>{
         profileView.addWater(state.dayLog.Water);
         profileView.toggleBtn();
         //update db
-        var date = elements.date.value;
-        var arr = date.split("/");
-        var dateObj = {
-            year: arr[2],
-            month: (arr[0][0]!='0')?arr[0]:arr[0][1],
-            day: (arr[1][0]!='0')?arr[1]:arr[1][1]
-        }
-        console.log(dateObj);
-        await foodDao.updateWater(state.dayLog.Water,dateObj);
+        await foodDao.updateWater(state.dayLog.Water,state.date);
         profileView.toggleBtn();
     }
 });
@@ -226,15 +227,7 @@ elements.removeWater.addEventListener('click',async ()=>{
         profileView.removeWater(state.dayLog.Water+1);
         profileView.toggleBtn();
         //update db
-        var date = elements.date.value;
-        var arr = date.split("/");
-        var dateObj = {
-            year: arr[2],
-            month: (arr[0][0]!='0')?arr[0]:arr[0][1],
-            day: (arr[1][0]!='0')?arr[1]:arr[1][1]
-        }
-
-        await foodDao.updateWater(state.dayLog.Water,dateObj);
+        await foodDao.updateWater(state.dayLog.Water,state.date);
         profileView.toggleBtn();
     }
 });
