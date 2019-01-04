@@ -77,7 +77,7 @@ var setUpImageUpload = (dateObj)=> {
     document.querySelector('.submit_btn').addEventListener('click', ()=>{
         if(file){
             var date="";
-            date = date.concat(dateObj.year,"/",dateObj.month+1,"/",dateObj.month);
+            date = date.concat(dateObj.year,"/",dateObj.month,"/",dateObj.day);
             var foodFile = {
                 file,
                 date,
