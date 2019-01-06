@@ -125,7 +125,7 @@ function userLogout(){
 firebase.auth().onAuthStateChanged(user=>{
     if(user){
         console.log("logged in");
-        load();
+        load(state.date);
     }else{
         console.log('no user found');
         userLogout();
