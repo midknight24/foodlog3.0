@@ -179,6 +179,7 @@ elements.date.addEventListener('change',()=>{
 //Init on page loaded
 document.addEventListener('DOMContentLoaded',async ()=>{
     checkLoginInfo();
+    elements.date.value = getCurDate();
     var user = firebase.auth().currentUser;
     console.log(user);
 });
