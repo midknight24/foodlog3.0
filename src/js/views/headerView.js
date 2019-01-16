@@ -1,5 +1,7 @@
 import {elements,fadeIn,fadeOut} from './base';
 import * as foodDao from '../foodDao';
+import { resolve } from 'path';
+import { rejects } from 'assert';
 
 //since uploadForm pops up only after date
 //is selected, we can pass in date
@@ -65,12 +67,15 @@ var guessMeal = ()=>{
     document.querySelector('#food_type_select').selectedIndex = index;
 }
 
-var setUpImageUpload = (dateObj)=> {
+var setUpImageUpload = dateObj => {
     var file;
-    document.querySelector('.file_portal').addEventListener('change', e=>{
+    document.querySelector('.file_portal').addEventListener('change', async e=>{
         file = event.target.files[0];
         var img = URL.createObjectURL(file);
-        document.querySelector('.upload_img').src = img;
+        var temp = await checkLandscape(img);
+        console.log(temp);
+        document.querySelector('.upload_img').src = temp ;
+        console.log("showing update img");
         document.querySelector('.upload_img').classList.add('real_img');
         document.querySelector('.real_img').classList.remove('upload_img');
     });
@@ -99,4 +104,46 @@ var renderLoading = ()=>{
     var wr = document.querySelector('.detail_img');
     fadeOut(wr);
     document.querySelector('.food_card').innerHTML = `<div class="loader upload_loader"></div>`;
+}
+
+var checkLandscape = (url)=>{
+    console.log("checking");
+    return new Promise(resolve=>{
+    var img = new Image();
+    img.onload = function(){
+        var width = img.width;
+        var height = img.height;
+        if(width>height){
+            console.log("flipping");
+            //picture is landscape mode
+            //draw new img and flip it
+            var c = document.createElement('canvas');
+            c.width = height;
+            c.height = width;
+
+
+            // save the unrotated context of the canvas so we can restore it later
+            // the alternative is to untranslate & unrotate after drawing
+            
+            var ctx = c.getContext('2d');
+            //ctx.clearRect(0,0,c.width,c.height);
+            //ctx.save();
+            ctx.translate(c.width/2,c.height/2);
+
+            // rotate the canvas to the specified degrees
+            ctx.rotate(90*Math.PI/180);
+        
+            // draw the image
+            // since the context is rotated, the image will be rotated also
+            ctx.drawImage(img,-img.width/2,-img.height/2);
+            //ctx.restore();
+            console.log(c.toDataURL())
+            resolve(c.toDataURL());
+        }else{
+            console.log("not flipping");
+            resolve(url);
+        }
+    }
+    img.src = url;
+})
 }
