@@ -9,6 +9,7 @@ import * as foodDao from './foodDao';
 var state = {
     //date obj of the current log
     date: getCurDateObj(),
+    dateString: getCurDate(),
     dayLog: null,
     sidebar: false
 }
@@ -79,25 +80,25 @@ function addOverlay(){
 function setUpImgDetailEvent(dayLog){
     dayLog.Breakfast.forEach(food => {
         document.getElementById(food.name).addEventListener('click',()=>{
-            logView.renderDetail(food,'Breakfast',state.date);
+            logView.renderDetail(food,'Breakfast',state.dateString);
             addOverlay();
         });
     });
     dayLog.Lunch.forEach(food => {
         document.getElementById(food.name).addEventListener('click',()=>{
-            logView.renderDetail(food,'Lunch',state.date);
+            logView.renderDetail(food,'Lunch',state.dateString);
             addOverlay();
         });
     });
     dayLog.Dinner.forEach(food => {
         document.getElementById(food.name).addEventListener('click',()=>{
-            logView.renderDetail(food,'Dinner',state.date);
+            logView.renderDetail(food,'Dinner',state.dateString);
             addOverlay();
         });
     });
     dayLog.Snacks.forEach(food => {
         document.getElementById(food.name).addEventListener('click',()=>{
-            logView.renderDetail(food,'Snacks',state.date);
+            logView.renderDetail(food,'Snacks',state.dateString);
             addOverlay();
         });
     });
@@ -124,7 +125,7 @@ function userLogout(){
 firebase.auth().onAuthStateChanged(user=>{
     if(user){
         console.log("logged in");
-        load();
+        load(state.date);
     }else{
         console.log('no user found');
         userLogout();
@@ -172,11 +173,13 @@ elements.date.addEventListener('change',()=>{
     var dateObj = parseDateObj(newDate);
     console.log(dateObj);
     state.date = dateObj;
+    state.dateString = newDate;
 });
 
 //Init on page loaded
 document.addEventListener('DOMContentLoaded',async ()=>{
     checkLoginInfo();
+    elements.date.value = getCurDate();
     var user = firebase.auth().currentUser;
     console.log(user);
 });
